@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIK AGU STUDIO | Multidisciplinary Visual Artist & Upcycling Practitioner</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0c0f0e;
+            --surface: #141816;
+            --surface-card: #1c2320;
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-main: #f0f4f1;
+            --text-muted: #9aa8a2;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.05em;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(12, 15, 14, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 5%;
+            z-index: 1000;
+        }
+
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Artistic Creative Typography Logo ('Bebas Neue' style) */
+        .creative-logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 60%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.12em;
+            line-height: 1;
+            text-transform: uppercase;
+            filter: drop-shadow(0 2px 10px rgba(212, 175, 55, 0.4));
+            transition: var(--transition);
+        }
+
+        .header-contact-sub {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 3px;
+        }
+
+        .header-contact-sub a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .header-contact-sub a:hover {
+            color: var(--gold-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--gold-primary);
+        }
+
+        .header-socials {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            border-left: 1px solid rgba(212, 175, 55, 0.2);
+            padding-left: 1rem;
+        }
+
+        .header-socials a {
+            color: var(--gold-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+        }
+
+        .header-socials a:hover {
+            background: var(--gold-primary);
+            color: var(--bg-deep);
+            border-color: var(--gold-primary);
+        }
+
+        .header-socials svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* Mobile Hamburger Menu Toggle Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background-color: var(--gold-primary);
+            transition: var(--transition);
+        }
+
+        /* Views / Pages Controller */
+        .page-view {
+            display: none;
+            padding-top: 5.5rem;
+            min-height: calc(100vh - 150px);
+        }
+
+        .page-view.active-page {
+            display: block;
+        }
+
+        /* Hero Section with Background Slideshow */
+        header.hero {
+            height: calc(100vh - 70px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 1.2rem;
+        }
+
+        .hero-slideshow {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out, transform 6s ease;
+            transform: scale(1);
+        }
+
+        .hero-slide.active-slide {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        header.hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(12, 15, 14, 0.82);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 7vw, 4.5rem);
+            color: var(--gold-light);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: clamp(0.95rem, 3.5vw, 1.25rem);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: transparent;
+            color: var(--gold-primary);
+            border: 1px solid var(--gold-primary);
+            padding: 0.75rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 2px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-primary);
+            color: var(--bg-deep);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Section Layouts */
+        section {
+            padding: 3.5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: var(--gold-primary);
+            margin: 0.6rem auto 0 auto;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .art-card {
+            background: var(--surface-card);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .art-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .art-image-wrapper {
+            height: 280px;
+            background: #090c0b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            padding: 1rem;
+        }
+
+        .art-image-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.6s ease;
+        }
+
+        .art-info {
+            padding: 1.4rem;
+        }
+
+        .art-info h3 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 0.4rem;
+        }
+
+        .meta-details {
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold-primary);
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Studio Blog Layout Styles */
+        .blog-container {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .blog-post-card {
+            background: var(--surface);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .blog-post-img {
+            height: 280px;
+            background: #090c0b;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blog-post-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-post-content {
+            padding: 1.8rem 1.4rem;
+        }
+
+        .blog-date {
+            font-size: 0.75rem;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .blog-post-content h3 {
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            margin-bottom: 0.8rem;
+        }
+
+        .blog-post-content p {
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            font-size: 0.98rem;
+        }
+
+        /* Individual Artwork Detail View */
+        .detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 4px;
+            padding: 2rem 1.2rem;
+        }
+
+        .top-detail-nav {
+            margin-bottom: 1.5rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--gold-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        .viewer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .main-view-box {
+            height: 360px;
+            background: #090c0b;
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 1rem;
+        }
+
+        .main-view-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .main-view-box::after {
+            content: '✨ Swipe or drag to explore';
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--text-main);
+            background: rgba(12, 15, 14, 0.85);
+            padding: 4px 10px;
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        .thumbnail-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6rem;
+        }
+
+        .thumb-box {
+            height: 75px;
+            background: #090c0b;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0.2rem;
+        }
+
+        .thumb-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .thumb-box.active-thumb {
+            border-color: var(--gold-primary);
+        }
+
+        .detail-content h2 {
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            margin-bottom: 0.8rem;
+        }
+
+        .detail-specs {
+            list-style: none;
+            margin: 1.2rem 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .detail-specs li {
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-specs strong {
+            color: var(--text-main);
+        }
+
+        .extended-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        /* Quick Switcher */
+        .quick-switcher-section {
+            margin-top: 3rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            padding-top: 1.5rem;
+        }
+
+        .quick-switcher-section h4 {
+            color: var(--gold-light);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .quick-switcher-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+
+        .quick-card {
+            background: var(--bg-deep);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 2px;
+            padding: 0.7rem;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .quick-card-title {
+            font-size: 0.75rem;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            background: linear-gradient(135deg, #141816, #1c2320);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 3rem 1.2rem;
+            border-radius: 4px;
+            max-width: 850px;
+            margin: 4rem auto 0 auto;
+            text-align: center;
+        }
+
+        .newsletter-section h3 {
+            font-size: 1.6rem;
+            color: var(--gold-light);
+            margin-bottom: 0.8rem;
+        }
+
+        .newsletter-section p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            background: var(--bg-deep);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--text-main);
+            padding: 0.85rem 1rem;
+            border-radius: 2px;
+            font-family: inherit;
+        }
+
+        /* About Page */
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 2rem 1.2rem;
+            border-radius: 4px;
+        }
+
+        .about-header-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .artist-photo-box {
+            position: relative;
+            background: #090c0b;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+            height: 340px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .artist-photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .artist-photo-caption {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            background: rgba(12, 15, 14, 0.85);
+            padding: 0.7rem;
+            font-size: 0.75rem;
+            color: var(--gold-light);
+            text-align: center;
+            font-family: 'Cinzel', serif;
+        }
+
+        .about-intro-text p, .about-body-content p {
+            color: var(--text-muted);
+            font-weight: 300;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+
+        .about-body-content h3 {
+            color: var(--gold-light);
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        /* Contact Form */
+        .form-container {
+            background: var(--surface);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 2.5rem 1.2rem;
+            border-radius: 4px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group.full {
+            grid-column: span 1;
+        }
+
+        label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input, select, textarea {
+            background: var(--bg-deep);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 0.85rem 1rem;
+            font-family: inherit;
+            border-radius: 2px;
+            width: 100%;
+        }
+
+        textarea {
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: var(--gold-primary);
+            color: var(--bg-deep);
+            border: none;
+            padding: 0.9rem 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 2px;
+            margin-top: 0.5rem;
+        }
+
+        #form-success-banner {
+            display: none;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-light);
+            padding: 1rem;
+            text-align: center;
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            text-align: center;
+            padding: 2.5rem 5%;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 4rem;
+        }
+
+        .social-footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-footer-links a, .footer-contact-info a {
+            color: var(--gold-light);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-contact-info {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        /* Media Queries for Desktop */
+        @media (min-width: 1024px) {
+            .mobile-menu-btn {
+                display: none !important;
+            }
+            .nav-links {
+                display: flex !important;
+                position: static;
+                background: none;
+                flex-direction: row;
+                width: auto;
+                padding: 0;
+                border: none;
+            }
+            .header-contact-sub {
+                display: flex;
+            }
+            .detail-grid {
+                grid-template-columns: 1.5fr 1fr;
+                gap: 4rem;
+            }
+            .about-header-grid {
+                grid-template-columns: 1fr 1.5fr;
+                gap: 3rem;
+            }
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .form-group.full {
+                grid-column: span 2;
+            }
+            .quick-switcher-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .newsletter-form {
+                flex-direction: row;
+            }
+            .main-view-box {
+                height: 550px;
+            }
+            section {
+                padding: 5rem 10%;
+            }
+            .detail-container, .about-container, .form-container {
+                padding: 3.5rem;
+            }
+        }
+
+        /* Mobile Dropdown Menu Active State */
+        @media (max-width: 1023px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(12, 15, 14, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                padding: 1.8rem;
+                gap: 1.2rem;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+                text-align: center;
+            }
+            .nav-links.mobile-active {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: flex;
+            }
+            .header-contact-sub {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar with Mobile Hamburger Toggle -->
+    <nav>
+        <a class="logo-area" onclick="switchPage('home')">
+            <div class="creative-logo-text">Aik Agu</div>
+            <div class="header-contact-sub">
+                <a href="mailto:aikagu@aikagustudio.com">✉ aikagu@aikagustudio.com</a>
+                <a href="tel:+16477744077">📞 +1 (647) 774-4077</a>
+            </div>
+        </a>
+
+        <div class="nav-right">
+            <ul class="nav-links" id="nav-links-menu">
+                <li><a onclick="switchPage('home'); toggleMobileMenu();">Home</a></li>
+                <li><a onclick="switchPage('artworks'); toggleMobileMenu();">Artworks</a></li>
+                <li><a onclick="switchPage('news'); toggleMobileMenu();">Studio Blog</a></li>
+                <li><a onclick="switchPage('about'); toggleMobileMenu();">About</a></li>
+                <li><a onclick="switchPage('contact'); toggleMobileMenu();">Get in Touch</a></li>
+            </ul>
+            <div class="header-socials">
+                <a href="https://www.instagram.com/aikagustudio/" target="_blank" rel="noopener" title="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61595885536325" target="_blank" rel="noopener" title="Facebook">
+                    <svg viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.37 14.5 5 15.5 5H18V0h-3.808C10.59 0 9 1.581 9 4.615V8z"/></svg>
+                </a>
+                <a href="https://x.com/agu_aik" target="_blank" rel="noopener" title="X (Twitter)">
+                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://www.youtube.com/@aikagustudio" target="_blank" rel="noopener" title="YouTube">
+                    <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+            </div>
+            <!-- Hamburger Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- PAGE 1: HOME -->
+    <div id="page-home" class="page-view active-page">
+        <header class="hero">
+            <div class="hero-slideshow" id="hero-slideshow">
+                <div class="hero-slide active-slide" style="background-image: url('https://i.imgur.com/cFsrhCN.jpeg');"></div>
+                <div class="hero-slide" style="background-image: url('https://i.imgur.com/v2oS4wI.jpeg');"></div>
+                <div class="hero-slide" style="background-image: url('https://i.imgur.com/X3n2iPB.jpeg');"></div>
+                <div class="hero-slide" style="background-image: url('https://i.imgur.com/V52NBbE.jpeg');"></div>
+                <div class="hero-slide" style="background-image: url('https://i.imgur.com/ZHTdcCd.jpeg');"></div>
+            </div>
+            <div class="hero-content">
+                <h1>AIK AGU</h1>
+                <p>Multidisciplinary visual artist and upcycling practitioner transforming discarded electronic waste, automotive scrap, and reclaimed wood into refined bas-relief mosaics, sculptures, and paintings.</p>
+                <button class="btn-primary" onclick="switchPage('artworks')">Explore Artworks</button>
+            </div>
+        </header>
+    </div>
+
+    <!-- PAGE 2: ARTWORKS -->
+    <div id="page-artworks" class="page-view">
+        <section>
+            <h2 class="section-title">Artworks Portfolio</h2>
+            <div class="gallery-grid">
+                <div class="art-card" onclick="openArtwork('work-1')">
+                    <div class="art-image-wrapper"><img src="https://i.imgur.com/cFsrhCN.jpeg" alt="IN Atonement"></div>
+                    <div class="art-info">
+                        <h3>IN Atonement</h3>
+                        <div class="meta-details">Size: 53.5" x 48" | Mixed Media Relief</div>
+                        <span class="badge">Inquire for Availability</span>
+                    </div>
+                </div>
+                <div class="art-card" onclick="openArtwork('work-2')">
+                    <div class="art-image-wrapper"><img src="https://i.imgur.com/v2oS4wI.jpeg" alt="Melodious Moments"></div>
+                    <div class="art-info">
+                        <h3>Melodious Moments</h3>
+                        <div class="meta-details">Height: 63" | Mixed Media Sculpture</div>
+                        <span class="badge">Inquire for Availability</span>
+                    </div>
+                </div>
+                <div class="art-card" onclick="openArtwork('work-3')">
+                    <div class="art-image-wrapper"><img src="https://i.imgur.com/X3n2iPB.jpeg" alt="Ezi na ụlọ"></div>
+                    <div class="art-info">
+                        <h3>Ezi na ụlọ (household)</h3>
+                        <div class="meta-details">Height: 63" | Mixed Media Sculpture</div>
+                        <span class="badge">Inquire for Availability</span>
+                    </div>
+                </div>
+                <div class="art-card" onclick="openArtwork('work-4')">
+                    <div class="art-image-wrapper"><img src="https://i.imgur.com/V52NBbE.jpeg" alt="A dance with the spirits 2"></div>
+                    <div class="art-info">
+                        <h3>A dance with the spirits 2</h3>
+                        <div class="meta-details">Height: 75" | Mixed Media Sculpture</div>
+                        <span class="badge">Inquire for Availability</span>
+                    </div>
+                </div>
+                <div class="art-card" onclick="openArtwork('work-5')">
+                    <div class="art-image-wrapper"><img src="https://i.imgur.com/HG5E5EB.jpeg" alt="New Yam Festival"></div>
+                    <div class="art-info">
+                        <h3>New Yam Festival</h3>
+                        <div class="meta-details">Height: 64" | Upcycled Mixed-Media Sculpture</div>
+                        <span class="badge">Inquire for Availability</span>
+                    </div>
+                </div>
+                <div class="art-card" onclick="openArtwork('work-6')">
+                    <div class="art-image-wrapper"><img src="https://i.imgur.com/ZHTdcCd.jpeg" alt="windows of Heritage"></div>
+                    <div class="art-info">
+                        <h3>windows of Heritage</h3>
+                        <div class="meta-details">Size: 36" x 36" | Mixed Media Canvas</div>
+                        <span class="badge">Inquire for Availability</span>
+                    </div>
+                </div>
+                <div class="art-card" onclick="openArtwork('work-7')">
+                    <div class="art-image-wrapper"><img src="https://i.imgur.com/fR4sQZi.jpeg" alt="Tapestry of Memories"></div>
+                    <div class="art-info">
+                        <h3>Tapestry of Memories</h3>
+                        <div class="meta-details">Size: 24" x 36" | Acrylic and Textile on Canvas</div>
+                        <span class="badge">Inquire for Availability</span>
+                    </div>
+                </div>
+                <div class="art-card" onclick="openArtwork('work-8')">
+                    <div class="art-image-wrapper"><img src="https://i.imgur.com/b6i1JWU.jpeg" alt="Rhythms of Heritage"></div>
+                    <div class="art-info">
+                        <h3>Rhythms of Heritage</h3>
+                        <div class="meta-details">Size: 24" x 36" | Acrylic and Textile on Canvas</div>
+                        <span class="badge">Inquire for Availability</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGE 3: STUDIO BLOG -->
+    <div id="page-news" class="page-view">
+        <section>
+            <h2 class="section-title">Studio Blog & Dispatches</h2>
+            <div class="blog-container">
+                <article class="blog-post-card">
+                    <div class="blog-post-img"><img src="https://i.imgur.com/0r1KSH4.jpeg" alt="E-Waste Portrait Work-in-Progress"></div>
+                    <div class="blog-post-content">
+                        <div class="blog-date">November 2026 — Current Studio Focus</div>
+                        <h3>Exploring E-Waste: Building 3D Works and Mixed-Media Reliefs</h3>
+                        <p>For the foreseeable future, my primary studio focus is centered heavily on exploring e-waste—transforming discarded motherboards, circuit boards, computer keyboards, phone components, and tangled wiring into powerful three-dimensional works and mixed-media bas-reliefs.</p>
+                        <button class="btn-primary" onclick="switchPage('contact')">Inquire About Series</button>
+                    </div>
+                </article>
+                <article class="blog-post-card">
+                    <div class="blog-post-img"><img src="https://i.imgur.com/HG5E5EB.jpeg" alt="New Yam Festival"></div>
+                    <div class="blog-post-content">
+                        <div class="blog-date">October 24, 2026 — Process & Philosophy</div>
+                        <h3>Transforming Industrial Scraps into Totems of Heritage</h3>
+                        <p>In the studio this week, attention has been focused on the vertical dynamics of assembly sculpture. By recontextualizing discarded automobile parts and structural metals alongside organic wood, we explore how modern remnants can carry traditional narrative.</p>
+                        <button class="btn-primary" onclick="switchPage('contact')">Inquire About Series</button>
+                    </div>
+                </article>
+            </div>
+            <div class="newsletter-section">
+                <h3>Join the Studio Collector List</h3>
+                <p>Subscribe to receive early previews of new upcycled sculpture series and studio dispatches.</p>
+                <form class="newsletter-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="apikey" value="bed47efe-7f20-4265-86f5-226ecf2219bf">
+                    <input type="hidden" name="subject" value="New Studio Newsletter Subscription">
+                    <input type="email" name="email" required placeholder="Enter your email...">
+                    <button type="submit" class="btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGE 4: ARTWORK DETAIL -->
+    <div id="page-work-detail" class="page-view">
+        <section>
+            <div class="detail-container">
+                <div class="top-detail-nav">
+                    <a class="back-link" onclick="switchPage('artworks')">&larr; Back to Artworks Portfolio</a>
+                </div>
+                <div class="detail-grid">
+                    <div class="viewer-container">
+                        <div class="main-view-box" id="main-viewer-box">
+                            <img id="main-viewer-img" src="" alt="Artwork View">
+                        </div>
+                        <div class="thumbnail-strip" id="thumbnail-strip-container"></div>
+                    </div>
+                    <div class="detail-content">
+                        <h2 id="detail-title">Artwork Title</h2>
+                        <ul class="detail-specs">
+                            <li><strong>Dimensions:</strong> <span id="detail-size">53.5" x 48"</span></li>
+                            <li><strong>Medium:</strong> <span id="detail-medium">Mixed Media</span></li>
+                            <li><strong>Status:</strong> <span style="color: var(--gold-primary);" id="detail-status">Inquire for Availability</span></li>
+                        </ul>
+                        <p class="extended-description" id="detail-desc">Extended description...</p>
+                        <button class="btn-primary" onclick="proceedToContact()">Get in Touch</button>
+                    </div>
+                </div>
+                <div class="quick-switcher-section">
+                    <h4>Explore Other Artworks</h4>
+                    <div class="quick-switcher-grid" id="quick-switcher-container"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGE 5: ABOUT -->
+    <div id="page-about" class="page-view">
+        <section>
+            <h2 class="section-title">Biography & Artistic Practice</h2>
+            <div class="about-container">
+                <div class="about-header-grid">
+                    <div class="artist-photo-box">
+                        <img src="https://i.imgur.com/feCKK3H.jpeg" alt="Aik Agu">
+                        <div class="artist-photo-caption">Aik Agu — Studio Practice</div>
+                    </div>
+                    <div class="about-intro-text">
+                        <p>Aik Agu is a Nigerian-Canadian visual artist whose multidisciplinary practice explores African identity, cultural memory, spirituality, and symbolism.</p>
+                        <p>His work spans painting, sculpture, wood-panel art, mixed media, and upcycled materials, transforming discarded and everyday objects into meaningful works of art.</p>
+                    </div>
+                </div>
+                <div class="about-body-content">
+                    <h3>Heritage & Visual Language</h3>
+                    <p>Deeply influenced by his Nigerian heritage, Agu incorporates elements of Nsibidi and Uli into contemporary compositions, using traditional visual languages to explore ancestry, identity, and spirituality.</p>
+                    <h3>Material Transformation</h3>
+                    <p>With formal training in Art and Design, specializing in Sculpture, Agu approaches his practice as both an artist and a cultural storyteller, giving forgotten materials new life.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGE 6: CONTACT -->
+    <div id="page-contact" class="page-view">
+        <section>
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="form-container">
+                <div id="form-success-banner">Message sent successfully! Redirecting in 5 seconds...</div>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem;">Reach out below for general inquiries, artwork availability, or gallery collaborations.</p>
+                <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="apikey" value="bed47efe-7f20-4265-86f5-226ecf2219bf">
+                    <div class="form-grid">
+                        <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" required placeholder="Full Name"></div>
+                        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" required placeholder="collector@domain.com"></div>
+                        <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="+1 (647) 774-4077"></div>
+                        <div class="form-group">
+                            <label for="inquiry-type">Inquiry Topic</label>
+                            <select id="inquiry-type" name="inquiry_type">
+                                <option value="availability">Artwork Availability / Acquisition</option>
+                                <option value="general">General Question</option>
+                                <option value="custom-portrait">Custom Commission</option>
+                                <option value="press-gallery">Press & Gallery Collaboration</option>
+                            </select>
+                        </div>
+                        <div class="form-group full"><label for="message">Message</label><textarea id="message" name="message" required placeholder="How can I assist you?..."></textarea></div>
+                    </div>
+                    <button type="submit" id="submit-btn-el" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-footer-links">
+            <a href="https://www.instagram.com/aikagustudio/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61595885536325" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://x.com/agu_aik" target="_blank" rel="noopener">X (Twitter)</a>
+            <a href="https://www.youtube.com/@aikagustudio" target="_blank" rel="noopener">YouTube</a>
+        </div>
+        <div class="footer-contact-info">
+            <p>Email: <a href="mailto:aikagu@aikagustudio.com">aikagu@aikagustudio.com</a></p>
+            <p>Phone: <a href="tel:+16477744077">+1 (647) 774-4077</a></p>
+        </div>
+        <p style="margin-top: 1.2rem;">&copy; 2026 AIK AGU Studio. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        function nextSlide() {
+            if (slides.length === 0) return;
+            slides[currentSlide].classList.remove('active-slide');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active-slide');
+        }
+        setInterval(nextSlide, 5000);
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('nav-links-menu');
+            menu.classList.toggle('mobile-active');
+        }
+
+        const artworksData = {
+            'work-1': {
+                title: 'IN Atonement',
+                size: '53.5 in x 48 inches',
+                medium: 'Discarded Motherboards, tires, Acrylic, on a Reclaimed panel Wood',
+                status: 'Inquire for Availability',
+                desc: 'In the rhythms of the New Yam Festival, atonement is the quiet beat before the dance begins... In Atonement captures this raw preparatory energy.',
+                views: ['https://i.imgur.com/cFsrhCN.jpeg', 'https://i.imgur.com/XFWMVkG.jpeg', 'https://i.imgur.com/RftJaaj.jpeg', 'https://i.imgur.com/kkdpJeh.jpeg']
+            },
+            'work-2': {
+                title: 'Melodious Moments',
+                size: '63 inches (Height)',
+                medium: 'Automobile parts, Acrylic paint, found wood and a reclaimed African talking drum',
+                status: 'Inquire for Availability',
+                desc: 'Melodious Moments captures the vibrant spirit of traditional African instrumentation and celebration...',
+                views: ['https://i.imgur.com/v2oS4wI.jpeg', 'https://i.imgur.com/vEwy8fj.jpeg', 'https://i.imgur.com/ymfvhcZ.png']
+            },
+            'work-3': {
+                title: 'Ezi na ụlọ (household)',
+                size: '63 in (Height)',
+                medium: 'Found wood and metal (mixed media)',
+                status: 'Inquire for Availability',
+                desc: 'Ezi Na Ụlọ (Household) celebrates the profound and sacred importance of the family unit...',
+                views: ['https://i.imgur.com/X3n2iPB.jpeg', 'https://i.imgur.com/7xAazt7.jpeg', 'https://i.imgur.com/xxbiAYl.jpeg', 'https://i.imgur.com/r1ph9vC.png']
+            },
+            'work-4': {
+                title: 'A dance with the spirits 2',
+                size: '75 inches (Height)',
+                medium: 'Found wood, Acrylic and auto parts (mixed media)',
+                status: 'Inquire for Availability',
+                desc: 'A Dance with the Spirit 2 captures the mystical energy of the maidens performance...',
+                views: ['https://i.imgur.com/V52NBbE.jpeg', 'https://i.imgur.com/PfJvXRb.jpeg', 'https://i.imgur.com/MvVz2QQ.jpeg', 'https://i.imgur.com/YMIvDkk.png']
+            },
+            'work-5': {
+                title: 'New Yam Festival',
+                size: '64 inches (Height)',
+                medium: 'Upcycled mixed-media sculpture',
+                status: 'Inquire for Availability',
+                desc: 'Bridging ancestral tradition with industrial recontextualization, New Yam Festival transforms discarded mechanical remnants...',
+                views: ['https://i.imgur.com/HG5E5EB.jpeg', 'https://i.imgur.com/Q0ANoht.jpeg', 'https://i.imgur.com/7cuYroK.jpeg', 'https://i.imgur.com/M2YL6lV.jpeg']
+            },
+            'work-6': {
+                title: 'windows of Heritage',
+                size: '36 in x 36 inches',
+                medium: 'Acrylic and discarded fabric on Canvas (mixed media)',
+                status: 'Inquire for Availability',
+                desc: 'Windows of Heritage weaves together vibrant patches of textile, acrylic pigment, and heavy impasto texture...',
+                views: ['https://i.imgur.com/ZHTdcCd.jpeg', 'https://i.imgur.com/7iFnnO5.png']
+            },
+            'work-7': {
+                title: 'Tapestry of Memories',
+                size: '24 X 36 inches',
+                medium: 'Acrylic and textile on canvas',
+                status: 'Inquire for Availability',
+                desc: 'Tapestry of Memories is a vibrant exploration of texture, color, and cultural symbolism...',
+                views: ['https://i.imgur.com/fR4sQZi.jpeg', 'https://i.imgur.com/Gvs05T6.jpeg', 'https://i.imgur.com/BssSvSG.jpeg']
+            },
+            'work-8': {
+                title: 'Rhythms of Heritage',
+                size: '24 X 36 inches',
+                medium: 'Acrylic and textile on canvas',
+                status: 'Inquire for Availability',
+                desc: 'Rhythms of Heritage is a vibrant mixed-media composition that explores the intersection of texture...',
+                views: ['https://i.imgur.com/b6i1JWU.jpeg', 'https://i.imgur.com/5bXszls.jpeg', 'https://i.imgur.com/XJlKifg.jpeg']
+            }
+        };
+
+        let currentActiveWork = null;
+        let currentViewIndex = 0;
+
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active-page'));
+            document.getElementById('page-' + pageId).classList.add('active-page');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openArtwork(workKey) {
+            const data = artworksData[workKey];
+            if (data) {
+                currentActiveWork = data;
+                currentViewIndex = 0;
+                document.getElementById('detail-title').innerText = data.title;
+                document.getElementById('detail-size').innerText = data.size;
+                document.getElementById('detail-medium').innerText = data.medium;
+                document.getElementById('detail-status').innerText = data.status;
+                document.getElementById('detail-desc').innerText = data.desc;
+                buildThumbnailStrip(data.views);
+                updateMainViewer();
+                buildQuickSwitcher(workKey);
+                switchPage('work-detail');
+            }
+        }
+
+        function buildThumbnailStrip(views) {
+            const container = document.getElementById('thumbnail-strip-container');
+            container.innerHTML = '';
+            views.forEach((url, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'thumb-box' + (index === 0 ? ' active-thumb' : '');
+                thumb.onclick = () => {
+                    currentViewIndex = index;
+                    document.querySelectorAll('.thumb-box').forEach(el => el.classList.remove('active-thumb'));
+                    thumb.classList.add('active-thumb');
+                    updateMainViewer();
+                };
+                thumb.innerHTML = `<img src="${url}" alt="Thumb">`;
+                container.appendChild(thumb);
+            });
+        }
+
+        function updateMainViewer() {
+            if (currentActiveWork) {
+                document.getElementById('main-viewer-img').src = currentActiveWork.views[currentViewIndex];
+            }
+        }
+
+        function buildQuickSwitcher(currentKey) {
+            const container = document.getElementById('quick-switcher-container');
+            container.innerHTML = '';
+            for (const [key, work] of Object.entries(artworksData)) {
+                const card = document.createElement('div');
+                card.className = 'quick-card' + (key === currentKey ? ' active-quick' : '');
+                card.onclick = () => openArtwork(key);
+                card.innerHTML = `<div class="quick-card-title">${work.title}</div>`;
+                container.appendChild(card);
+            }
+        }
+
+        function proceedToContact() {
+            switchPage('contact');
+        }
+
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(contactForm);
+                const submitBtn = document.getElementById('submit-btn-el');
+                const successBanner = document.getElementById('form-success-banner');
+                submitBtn.innerText = 'Sending...';
+                submitBtn.disabled = true;
+                fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
+                .then(async (res) => {
+                    if (res.status == 200) {
+                        contactForm.reset();
+                        successBanner.style.display = 'block';
+                        submitBtn.innerText = 'Sent Successfully!';
+                        setTimeout(() => {
+                            successBanner.style.display = 'none';
+                            submitBtn.innerText = 'Send Message';
+                            submitBtn.disabled = false;
+                            switchPage('artworks');
+                        }, 5000);
+                    } else {
+                        alert('Something went wrong. Please try again.');
+                        submitBtn.innerText = 'Send Message';
+                        submitBtn.disabled = false;
+                    }
+                }).catch(() => {
+                    alert('Connection error.');
+                    submitBtn.innerText = 'Send Message';
+                    submitBtn.disabled = false;
+                });
+            });
+        }
+    </script>
+</body>
+</html>
